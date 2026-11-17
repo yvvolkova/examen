@@ -1,19 +1,23 @@
 package org.elgrao;
-import net.datafaker.Faker;
+import com.diogonunes.jcdp.color.ColoredPrinter;
+import com.diogonunes.jcdp.color.api.Ansi;
+
 
 public class Main
 {
-    public Main() {
-        Faker faker = new Faker();
+    public static void main(String[] args) {
+        ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
+                .foreground(Ansi.FColor.WHITE).background(Ansi.BColor.BLUE)
+                .build();
 
         for (int i = 0; i < 10; i++) {
             // Generar data
-            String name = faker.name().fullName();
-            String streetAddress = faker.address().streetAddress();
+            String name = "Juan Juánez";
+            String streetAddress = "Calle falsa, 123";
 
             // Mostrar data
-            System.out.println("Nombre: " + name);
-            System.out.println("Dirección: " + streetAddress);
+            cp.println("Nombre: " + name, Ansi.Attribute.BOLD, Ansi.FColor.BLACK, Ansi.BColor.WHITE);
+            cp.println("Dirección: " + streetAddress, Ansi.Attribute.NONE, Ansi.FColor.BLACK, Ansi.BColor.GREEN);
         }
     }
 }
